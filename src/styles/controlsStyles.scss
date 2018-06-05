@@ -1,0 +1,25 @@
+@import "_variablesStyles.scss";
+
+.mat-input-element{
+  color:$text-color !important;
+}
+
+.mat-icon{
+  color: $detail-color-one;
+}
+
+snack-bar-container.error-snackbar{
+  display: flex;
+  justify-content: center;
+  background: $detail-warn-color;
+  color:$text-color;
+  font-weight: bold;
+}
+
+snack-bar-container.success-snackbar{
+  display: flex;
+  justify-content: center;
+  background: $detail-sucess-color;
+  color:$text-color;
+  font-weight: bold;
+}
