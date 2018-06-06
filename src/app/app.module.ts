@@ -27,14 +27,18 @@ import { CircleLoaderComponent } from './components/common/circle-loader.compone
 
 //COMPONENTES PAGINAS
 import { HomeComponent } from './components/home.component';
+import { MenuNavBarComponent } from './components/menu-nav-bar.component';
 import { LoginUserComponent } from './components/login/login-user.component';
+import { RegistrarseUserComponent } from './components/login/registrarse-user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    MenuNavBarComponent,
     CircleLoaderComponent,
-    LoginUserComponent
+    LoginUserComponent,
+    RegistrarseUserComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,9 @@
+@import "../../styles/_variablesStyles.scss";
+
+.navbar-default{
+  background-color: $background-color-one;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid $detail-color-one;
+}

@@ -1,0 +1,42 @@
+<div style="padding-left: 2em; padding-top: 20px;">
+  <circle-loader [loading]="loading"></circle-loader>
+
+  <form #formUser="ngForm">
+    <div class="flex-h-center flex-v">
+      <div class="flex-v">
+        <mat-form-field>
+          <input matInput placeholder="Nombre" #name="ngModel" name="name" [(ngModel)]="user.name" required>
+        </mat-form-field>
+        <span class="error-label" *ngIf="!name.valid && name.touched">Nombre requerido o invalido</span>
+      </div>
+      <div class="flex-v">
+        <mat-form-field>
+          <input matInput type="email" placeholder="Mail" #email="ngModel" name="email"
+                 [(ngModel)]="user.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+        </mat-form-field>
+        <span class="error-label" *ngIf="!email.valid && email.touched">Email requerido o invalido</span>
+
+      </div>
+      <div class="flex-v">
+        <mat-form-field>
+          <input matInput type="password" placeholder="Contraseña" #pass="ngModel" name="pass" [(ngModel)]="user.pass" required>
+        </mat-form-field>
+        <span class="error-label" *ngIf="!pass.valid && pass.touched">Email requerido o invalido</span>
+      </div>
+      <div class="flex-v">
+        <mat-form-field>
+          <mat-select placeholder="Sexo" #sex="ngModel" name="sex" [(ngModel)]="user.sex" required>
+            <mat-option *ngFor="let sexo of listaSexos" [value]="sexo.value">
+              {{ sexo.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <span class="error-label" *ngIf="!sex.valid && sex.touched">Sexo requerido</span>
+      </div>
+      <div class="flex-h first-item">
+        <button mat-raised-button color="accent" [disabled]="!formUser.valid" (click)="acceptClick()">Aceptar</button>
+        <button mat-raised-button color="warn" (click)="cancelClick()" style="padding-left: 1em;">Cancelar</button>
+      </div>
+    </div>
+  </form>
+</div>

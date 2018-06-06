@@ -6,9 +6,9 @@
       <div class="flex-30">
         <div class="flex-v">
           <mat-form-field>
-            <input matInput placeholder="Nombre" #name="ngModel" name="name" [(ngModel)]="user.name" required>
-            <mat-error *ngIf="!name.valid && name.touched">
-              Nombre requerido o invalido
+            <input matInput placeholder="Email" #email="ngModel" name="email" [(ngModel)]="user.email" required>
+            <mat-error *ngIf="!email.valid && email.touched" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+              Email requerido o invalido
             </mat-error>
           </mat-form-field>
         </div>

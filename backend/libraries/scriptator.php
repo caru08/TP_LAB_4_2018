@@ -29,9 +29,12 @@ class Scriptator {
         return $jsonToEncript; 
     } 
 
-    static public function createToken($id){
+    static public function createToken($id, $userName, $userEmail, $userRole){
         $tokenToEncrypt = [
                        "id"=>$id,
+                       "name"=>$userName,
+                       "email"=>$userEmail,
+                       "role"=>$userRole,
                        "create_date"=>date('d/m/Y H:i:s')
         ];
         $encripted = Scriptator::encrypt($tokenToEncrypt);        
@@ -45,7 +48,7 @@ class Scriptator {
         $minutes = $interval->format('%i');
 
         if($minutes < 59){
-            $encripted = Scriptator::createToken($desncriptedToken->id);
+            $encripted = Scriptator::createToken($desncriptedToken->id, $desncriptedToken->name, $desncriptedToken->email, $desncriptedToken->role);
            return $encripted;
         }else{
             return null;

@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {  Router } from '@angular/router';
 import { SnackMessage } from './../../services/snackmessage.service';
 import { LoginService } from '../../services/login.service';
+import { User } from '../../models';
 
 @Component({
   selector: 'login-user',
@@ -10,7 +11,7 @@ import { LoginService } from '../../services/login.service';
 
 export class LoginUserComponent implements OnInit {
 
-  public user  = {name: '', pass: ''};
+  public user  = new User();
   public loading:boolean;
 
   constructor(private router: Router,
@@ -26,14 +27,14 @@ export class LoginUserComponent implements OnInit {
   }
 
   registrarse() {
-    this.router.navigate(['' ]);
+    this.router.navigate(['/registrarse' ]);
   }
 
   private login(){
     this.loading = true;
-    this.loginService.login(this.user.name, this.user.pass).subscribe((response) => {
+    this.loginService.login(this.user).subscribe((response) => {
       if(response.code == 201){
-        this.router.navigate(['./Listado' ]);
+        this.router.navigate(['./home' ]);
       }else{
         this.snackMessage.ShowErrorSnack("error al loguearse: " + response.message);
       }
