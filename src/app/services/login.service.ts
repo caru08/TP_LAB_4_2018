@@ -42,9 +42,11 @@ export class LoginService {
   }
 
   logout(){
+    debugger;
     this.clearAuthorizationToken();
     this.clearSession();
     this.clearLocalStorage();
+    this.notify();
   }
 
   registryUser(user){

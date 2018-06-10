@@ -29,7 +29,6 @@ $app->get('/login', function() use($app, $db){
         $email = $app->request->get('email');
         $pass = $app->request->get('pass');
         $md5Pass = md5($pass);
-    
         $query = "SELECT * FROM usuarios WHERE ".
                 "email = '$email' AND ".
                 "password = '$md5Pass'";

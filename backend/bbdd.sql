@@ -13,4 +13,4 @@ CREATE TABLE usuarios(
     CONSTRAINT email_unique UNIQUE (email)
 )ENGINE=InnoDb;
 
-INSERT INTO usuarios VALUES (null, 'admin', 'admin@email.com', '', 'admin', '81dc9bdb52d04dc20036dbd8313ed055') 
+INSERT INTO usuarios VALUES (null, 'admin', 'admin@email.com', '', 'admin', '81dc9bdb52d04dc20036dbd8313ed055');

@@ -24,6 +24,10 @@ export class MenuNavBarComponent implements OnInit{
     this.loginService.sessionChange.subscribe((session:Session) => this.loginAnswer(session));
   }
 
+  salir(){
+    this.loginService.logout();
+  }
+
   private getModulesByRole(){
 
   }
@@ -33,7 +37,8 @@ export class MenuNavBarComponent implements OnInit{
     if(session.logged){
       this.user = new User();
       this.user.name = session.user.name;
-
+    }else{
+      this.user = null;
     }
   }
 
