@@ -18,30 +18,31 @@ export class AppComponent implements OnInit {
   constructor(private router: Router,
               private loginService: LoginService,
               private snackMessage: SnackMessage){
-    this.checkLogin();
+    //this.checkLogin();
   }
 
   ngOnInit(){
     this.loginService.sessionChange.subscribe((session:Session) => this.loginAnswer(session));
+    this.router.navigate(['./home' ]);
   }
 
-  private checkLogin() {
-    this.loading = true;
-    this.loginService.checkLogin().subscribe((response) => {
-      if(response.code == 201){
-        this.router.navigate(['./home' ]);
-      }else{
-        this.router.navigate(['./home' ]);
-        console.log("ocurrio un error", response.message);
-      }
-      console.log(response);
-      this.loading = false;
-    }, (error) => {
-      this.router.navigate(['./home' ]);
-      console.log("ocurrio un error", error);
-      this.loading = false;
-    });
-  }
+  // private checkLogin() {
+  //   this.loading = true;
+  //   this.loginService.checkLogin().subscribe((response) => {
+  //     if(response.code == 201){
+  //       this.router.navigate(['./home' ]);
+  //     }else{
+  //       this.router.navigate(['./home' ]);
+  //       console.log("ocurrio un error", response.message);
+  //     }
+  //     console.log(response);
+  //     this.loading = false;
+  //   }, (error) => {
+  //     this.router.navigate(['./home' ]);
+  //     console.log("ocurrio un error", error);
+  //     this.loading = false;
+  //   });
+  // }
 
   loginAnswer(session: Session) {
     this.loading = false;

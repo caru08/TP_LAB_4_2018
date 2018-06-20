@@ -17,32 +17,43 @@ export class LoginService {
 
   public url: string;
 
-  private headers: HttpHeaders = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+  private headers: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(public _http: HttpClient,
               private snackMessage: SnackMessage) {
-    this.url = GLOBAL.apiLogin;
+    this.url = GLOBAL.url;
   }
 
   login(user){
-    let params = { email: user.email, pass: user.pass};
-    return this._http.get(this.url + '/login', { params: params, headers: this.headers })
+    var token = this.getToken();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': token
+      })
+    };
+    return this._http.post(this.url + '/login', user, httpOptions)
       .map(
         res => this.succesLogin(res)
       );
   }
 
   checkLogin(){
-    let token = this.getToken();
+    var token = this.getToken();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': token
+      })
+    };
     this.logout();
-    return this._http.get(this.url + '/login/check', { params: {token: token} })
+    return this._http.post(this.url + '/login/check', {}, httpOptions)
       .map(
         res => this.succesLogin(res)
       );
   }
 
   logout(){
-    debugger;
     this.clearAuthorizationToken();
     this.clearSession();
     this.clearLocalStorage();
@@ -68,7 +79,7 @@ export class LoginService {
   private succesLogin(response){
     try {
       if(response.code == 201){
-        this.setAuthorizationHeader(response.data.token);
+        this.setAuthorizationHeader(response.data);
         this.setSession(response.data);
         this.setLocalStorage();
         this.notify();
@@ -83,10 +94,11 @@ export class LoginService {
   }
 
   private getToken(){
-    return localStorage.getItem('user') ? (JSON.parse(localStorage.getItem('user'))).token : null;
+    return localStorage.getItem('userToken') ? (JSON.parse(localStorage.getItem('userToken'))).token : "";
   }
 
   private setAuthorizationHeader(token){
+    this.headers.delete('Authorization');
     this.headers.append('Authorization', token);
   }
 
@@ -95,11 +107,7 @@ export class LoginService {
   }
 
   private setSession(data){
-    this.session.token = data.token;
-    this.session.user.id = data.id;
-    this.session.user.name = data.name;
-    this.session.user.email = data.email;
-    this.session.user.role = data.role;
+    this.session.token = data;
     this.session.logged = true;
   }
 
@@ -108,11 +116,11 @@ export class LoginService {
   }
 
   private setLocalStorage(){
-    localStorage.setItem('user', JSON.stringify(this.session));
+    localStorage.setItem('userToken', JSON.stringify(this.session));
   }
 
   private clearLocalStorage(){
-    localStorage.removeItem('user');
+    localStorage.removeItem('userToken');
   }
 
   private showErrorMessage(message){

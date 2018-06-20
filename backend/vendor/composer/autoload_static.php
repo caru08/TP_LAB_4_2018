@@ -4,13 +4,17 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitd01e09752218fd6ff770ff6bcf789d61
+class ComposerStaticInit429a9e2134286e150b9a8a7c6ba0e56d
 {
     public static $files = array (
         '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Slim\\' => 5,
+        ),
         'P' => 
         array (
             'Psr\\Http\\Message\\' => 17,
@@ -28,6 +32,10 @@ class ComposerStaticInitd01e09752218fd6ff770ff6bcf789d61
     );
 
     public static $prefixDirsPsr4 = array (
+        'Slim\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/slim/slim/Slim',
+        ),
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
@@ -51,13 +59,6 @@ class ComposerStaticInitd01e09752218fd6ff770ff6bcf789d61
     );
 
     public static $prefixesPsr0 = array (
-        'S' => 
-        array (
-            'Slim' => 
-            array (
-                0 => __DIR__ . '/..' . '/slim/slim',
-            ),
-        ),
         'P' => 
         array (
             'Pimple' => 
@@ -70,9 +71,9 @@ class ComposerStaticInitd01e09752218fd6ff770ff6bcf789d61
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitd01e09752218fd6ff770ff6bcf789d61::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitd01e09752218fd6ff770ff6bcf789d61::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitd01e09752218fd6ff770ff6bcf789d61::$prefixesPsr0;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit429a9e2134286e150b9a8a7c6ba0e56d::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit429a9e2134286e150b9a8a7c6ba0e56d::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit429a9e2134286e150b9a8a7c6ba0e56d::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }
