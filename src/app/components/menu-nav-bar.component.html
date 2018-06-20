@@ -15,7 +15,7 @@
           <li *ngIf="!user"><a routerLink="/login" routerLinkActive="active">Login</a></li>
           <li *ngIf="!user"><a routerLink="/registrarse" routerLinkActive="active">Registrarse</a></li>
           <li *ngIf="user"><a routerLinkActive="active">{{user.name | uppercase}}</a></li>
-          <li *ngIf="user"><a [routerLink]="[]" (click)="salir()" routerLinkActive="active">Logout</a></li>
+          <li *ngIf="user"><a [routerLink]="[]" (click)="logOutClick()" routerLinkActive="active">Logout</a></li>
         </ul>
       </div>
     </div>

@@ -24,7 +24,7 @@ export class MenuNavBarComponent implements OnInit{
     this.loginService.sessionChange.subscribe((session:Session) => this.loginAnswer(session));
   }
 
-  salir(){
+  logOutClick(){
     this.loginService.logout();
   }
 
@@ -33,6 +33,7 @@ export class MenuNavBarComponent implements OnInit{
   }
 
   loginAnswer(session: Session) {
+    debugger;
     this.loading = false;
     if(session.logged){
       this.user = new User();

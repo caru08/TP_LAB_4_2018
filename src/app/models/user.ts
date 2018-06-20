@@ -7,6 +7,14 @@ export class User{
   public role:string;
   public pass:string;
 
+  public copyData(data){
+    this.id = data.id;
+    this.name = data.name;
+    this.email = data.email;
+    this.sex = data.sex;
+    this.role = data.role;
+  }
+
 }
 
 export class Session{

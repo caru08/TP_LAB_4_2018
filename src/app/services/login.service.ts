@@ -3,6 +3,7 @@ import { HttpClient, HttpResponse, HttpHeaders, HttpRequest } from '@angular/com
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs';
 import { Session } from '../models';
+import { JwtHelper } from '../classes/JWTHelper';
 
 import 'rxjs/Rx';
 
@@ -24,7 +25,7 @@ export class LoginService {
     this.url = GLOBAL.url;
   }
 
-  login(user){
+  login(user):any{
     var token = this.getToken();
     const httpOptions = {
       headers: new HttpHeaders({
@@ -38,7 +39,7 @@ export class LoginService {
       );
   }
 
-  checkLogin(){
+  checkLogin():any{
     var token = this.getToken();
     const httpOptions = {
       headers: new HttpHeaders({
@@ -107,8 +108,10 @@ export class LoginService {
   }
 
   private setSession(data){
+    debugger;
     this.session.token = data;
     this.session.logged = true;
+    this.session.user.copyData(JwtHelper.decodeToken(data));
   }
 
   private clearSession(){
