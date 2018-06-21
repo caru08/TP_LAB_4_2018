@@ -23,3 +23,7 @@ snack-bar-container.success-snackbar{
   color:$text-color;
   font-weight: bold;
 }
+
+.nav>li>a:hover{
+  color:$detail-color-one !important;
+}

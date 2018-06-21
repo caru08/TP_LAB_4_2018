@@ -61,7 +61,7 @@ export class LoginService {
     this.notify();
   }
 
-  registryUser(user){
+  registryUser(user):any{
     let json = JSON.stringify(user);
     let params = 'json=' + json;
     return this._http.post(this.url + '/registrarse', params, {'headers': this.headers})
@@ -75,6 +75,10 @@ export class LoginService {
       //this.showErrorMessage("No estas logueado");
       return false;
     }
+  }
+
+  getRole(){
+    return this.session.user.role;
   }
 
   private succesLogin(response){
@@ -108,7 +112,6 @@ export class LoginService {
   }
 
   private setSession(data){
-    debugger;
     this.session.token = data;
     this.session.logged = true;
     this.session.user.copyData(JwtHelper.decodeToken(data));

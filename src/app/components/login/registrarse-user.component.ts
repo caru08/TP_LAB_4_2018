@@ -13,6 +13,8 @@ export class RegistrarseUserComponent {
 
   public user = new User();
   public loading: boolean;
+  public invalidCaptcha: boolean;
+  public siteKeyGoogle:string = '6LeF_V8UAAAAAJcFNflNmterrOXgwJ1yCqriBAkz';
 
   public listaSexos = [
     {
@@ -29,6 +31,12 @@ export class RegistrarseUserComponent {
               private loginService: LoginService,
               private snackMessage: SnackMessage) {
     this.user.role = "client";
+    this.invalidCaptcha = true;
+  }
+
+  resolved(captchaResponse: string) {
+    this.invalidCaptcha = false;
+    console.log(`Resolved captcha with response ${captchaResponse}:`);
   }
 
   acceptClick(){
@@ -48,7 +56,7 @@ export class RegistrarseUserComponent {
   }
 
   cancelClick(){
-
+    this.router.navigate(['./home' ]);
   }
 
 }

@@ -12,9 +12,12 @@ import { MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCardM
   MatTableModule, MatTabsModule, MatToolbarModule, MatTooltipModule, MatStepperModule,
   MatSnackBarModule } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
+import { RecaptchaModule } from 'ng-recaptcha';
+
 
 
 //SERVICIOS
+import { StaticData } from './classes/staticData'
 import { ROUTES } from './app.routes';
 import { LoginService } from './services/login.service';
 import { SnackMessage } from './services/snackmessage.service';
@@ -30,6 +33,8 @@ import { HomeComponent } from './components/home.component';
 import { MenuNavBarComponent } from './components/menu-nav-bar.component';
 import { LoginUserComponent } from './components/login/login-user.component';
 import { RegistrarseUserComponent } from './components/login/registrarse-user.component';
+import { SolicitarViajeComponent } from './components/acciones-usuario/solicitar-viaje.component';
+import { HistorialViajesComponent } from './components/acciones-usuario/historial-pedidos.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +43,9 @@ import { RegistrarseUserComponent } from './components/login/registrarse-user.co
     MenuNavBarComponent,
     CircleLoaderComponent,
     LoginUserComponent,
-    RegistrarseUserComponent
+    RegistrarseUserComponent,
+    SolicitarViajeComponent,
+    HistorialViajesComponent
   ],
   imports: [
     BrowserModule,
@@ -83,11 +90,13 @@ import { RegistrarseUserComponent } from './components/login/registrarse-user.co
       useHash: true,
       preloadingStrategy: PreloadAllModules,
       enableTracing: true  // <-- debugging purposes only
-    })
+    }),
+    RecaptchaModule.forRoot()
   ],
   providers: [
     LoginService,
-    SnackMessage
+    SnackMessage,
+    StaticData
   ],
   bootstrap: [AppComponent],
   entryComponents:[

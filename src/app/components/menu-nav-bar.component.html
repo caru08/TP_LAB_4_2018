@@ -5,9 +5,8 @@
     </div>
     <div class="flex-h flex-80">
       <div class="flex-50 flex-h">
-        <ul class="nav navbar-nav">
-          <li><a routerLink="/pagina1" routerLinkActive="active">Pagina 1</a></li>
-          <li><a routerLink="/pagina2" routerLinkActive="active">Pagina 2</a></li>
+        <ul class="nav navbar-nav" *ngFor="let module of modules">
+          <li><a (click)="moduleClick(module)">{{module.name}}</a></li>
         </ul>
       </div>
       <div class="flex-50">
